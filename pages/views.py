@@ -4,10 +4,16 @@ from django.shortcuts import render
 
 from django.http import HttpResponse, JsonResponse
 
+from rest_framework import viewsets
+
+from .serializers import ServerSerializer
+from .models import Server
+
 
 def home_page_view(request):
     return HttpResponse('Hello, World!')
 
 
-def json_view(request):
-    return JsonResponse({'Hello': 'World!'})
+class ServerViewSet(viewsets.ModelViewSet):
+    queryset = Server.objects.all().order_by('name')
+    serializer_class = ServerSerializer

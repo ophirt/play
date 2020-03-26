@@ -1,8 +1,13 @@
-from django.urls import path
+from django.urls import include, path
+from rest_framework import routers
+from . import views
 
-from .views import home_page_view, json_view
+router = routers.DefaultRouter()
+router.register(r'servers', views.ServerViewSet)
 
+# Wire up our API using automatic URL routing.
+# Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    path('', home_page_view, name='home'),
-    path('json/', json_view, name='json')
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

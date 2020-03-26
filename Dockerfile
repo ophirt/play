@@ -14,4 +14,6 @@ RUN poetry install
 
 EXPOSE 8000
 
+RUN poetry run pip install djangorestframework==3.11.0
+
 CMD ["poetry", "run", "python", "manage.py", "runserver", "0:8000"]
