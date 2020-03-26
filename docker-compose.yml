@@ -3,6 +3,6 @@ version: '3.3'
 services:
   web:
     build: .
-    command: poetry run python manage.py runserver 0:5000
+    command: poetry run python manage.py runserver 0:8000
     ports:
-      - 5000:5000
+      - 8000:8000
