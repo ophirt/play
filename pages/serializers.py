@@ -6,4 +6,4 @@ from .models import Server
 class ServerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Server
-        fields = ('name', 'base', 'team')
+        fields = ('id', 'name', 'base', 'team')
