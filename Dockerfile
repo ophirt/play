@@ -5,15 +5,14 @@ RUN mkdir /myapp
 WORKDIR /myapp
 
 RUN pip install poetry
-COPY pyproject.toml poetry.lock /myapp/
+COPY requirements.txt pyproject.toml poetry.lock /myapp/
 
 RUN poetry install --no-root
+RUN poetry run pip install -r requirements.txt
 
 COPY . .
 RUN poetry install
 
 EXPOSE 8000
-
-RUN poetry run pip install djangorestframework==3.11.0
 
 CMD ["poetry", "run", "python", "manage.py", "runserver", "0:8000"]
